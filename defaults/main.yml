@@ -1,0 +1,4 @@
+user: root
+rbenv_dir: ~{{user}}/.rbenv
+rbenv_git_sha: f71e22768c8bc02a10fc917f05072fdc68d71be4
+
