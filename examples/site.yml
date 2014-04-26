@@ -1,5 +1,5 @@
 - hosts: test-server
 
   roles: 
-    - {role: ../../, user: root}
+    - {role: ../../, user: ubuntu}
 

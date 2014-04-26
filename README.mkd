@@ -5,9 +5,9 @@ This is a reusable ansible role which installs Rbenv and
 some modules for a configurable user on Debian and Ubuntu
 Systems.
 
-This role does not provide mechanisms to install rubies
-on top of rbenv. Use the <TODO> role as an amendment 
-to install rubies.
+This role does not provide mechanisms to install rubies. The [Ansible
+Rbenv Ruby Role][] manages rubies on top of this role.
+
 
 Example Usage
 -------------
@@ -32,6 +32,14 @@ Use `source /etc/profile.d/rbenv-load.sh` e.g. to have `load-rbenv`
 available from non login shells (init scripts for example). 
 
 
+Dependencies
+------------
+
+This role installs packages which are required to install MRI rubies. It does
+not install dependencies for JRuby etc. The [Ansible Rbenv Ruby Role] has
+a parameter to install further dependencies for a particular ruby variant.
+
+
 Supported Ansible Versions
 --------------------------
 
@@ -44,4 +52,6 @@ Supported Operating Systems
 * Ubuntu 14.04 LTS Trusty
 * Ubuntu 12.04 LTS Precise
 
+
+  [Ansible Rbenv Ruby Role]: https://github.com/DrTom/ansible-role-rbenv-ruby
 
