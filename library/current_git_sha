@@ -4,23 +4,18 @@ set -e
 
 source ${1}
 
-
-if [ -z ${git_dir} ]; then echo "git_dir is not set"; exit -1; fi
-
 REPO_DIR=${git_dir}/.git
 
-if [ -z ${REPO_DIR} ]; then
+if [[ ! -d ${REPO_DIR} ]]; then
   SHA=null
 else
-  SHA=$(cd ${git_dir}; git show-ref --heads --head -s | head -n 1)
+  SHA=$(cd ${git_dir}; git rev-parse HEAD)
 fi
 
 cat <<HEREDOC 
-{"ansible_facts" : 
-  { "current_git_sha":
-    { "${git_dir}" : "${SHA}"
-    }
-  }
+{ 
+  "changed": false,
+  "value": "${SHA}" 
 }
 HEREDOC
 

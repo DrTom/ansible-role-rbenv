@@ -1,0 +1,47 @@
+Ansible Rbenv Role
+==================
+
+This is a reusable ansible role which installs Rbenv and
+some modules for a configurable user on Debian and Ubuntu
+Systems.
+
+This role does not provide mechanisms to install rubies
+on top of rbenv. Use the <TODO> role as an amendment 
+to install rubies.
+
+Example Usage
+-------------
+
+Assuming that `test-server` will resolve to a machine (e.g. by
+defining it in `~/.ssh/config`) where the current user
+has ssh access though a ssh key, invoke 
+
+    ansible-playbook -i examples/hosts examples/site.yml
+
+which will install rbenv for the root user.
+
+
+Loading Rbenv 
+-------------
+
+A user needs to invoke `rbenv-load` to use the `rbenv` command and installed
+rubies. This role purposely **does not load rbenv by default**. It is of course
+possible to add `rbenv-load` to `.bashrc` to have this happen automatically.
+
+Use `source /etc/profile.d/rbenv-load.sh` e.g. to have `load-rbenv`
+available from non login shells (init scripts for example). 
+
+
+Supported Ansible Versions
+--------------------------
+
+This role was tested with ansible => 1.5.
+
+Supported Operating Systems
+---------------------------
+
+* Debian 7 Wheezy
+* Ubuntu 14.04 LTS Trusty
+* Ubuntu 12.04 LTS Precise
+
+

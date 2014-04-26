@@ -1,6 +1,7 @@
 - name: Install dependencies
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
   with_items: 
+    - git-all
     - build-essential 
     - libreadline-gplv2-dev
     - libssl-dev
@@ -10,93 +11,131 @@
     - tklib 
     - zlib1g-dev 
 
+
 - name: Install rbenv-load profile
   template: src=rbenv-load.sh
             dest=/etc/profile.d/rbenv-load.sh
             mode=0644
 
-- name: Create target dir
+
+### rbenv 
+ 
+- name: Create rbenv target dir
   file: path={{rbenv_dir}}
         owner={{user}}
         group={{user}}
         state=directory
         mode=0755
 
+- current_git_sha: git_dir={{rbenv_dir}}
+  register: rbenv_current_git_sha
 
-- name: Clone rbenv
+- debug: msg={{rbenv_current_git_sha.value}}
+
+- name: Clone rbenv if not up to date
   sudo: True
   sudo_user: "{{user}}"
   git:  repo=https://github.com/sstephenson/rbenv.git
         dest={{rbenv_dir}}
         version={{rbenv_git_sha}}
+  when: '"{{rbenv_current_git_sha.value}}" != "{{rbenv_git_sha}}"'
 
+
+
+### ruby-build plugin
 
 - name: Create target dir
-  file: path=~{{user}}/.rbenv/plugins/ruby-build
+  file: path={{rbenv_ruby_build_dir}}
         owner={{user}}
         group={{user}}
         state=directory
         mode=0755
+
+- current_git_sha: git_dir={{rbenv_ruby_build_dir}}
+  register: rbenv_ruby_build_current_git_sha
 
 - name: Clone ruby-build plugin
   sudo: True
   sudo_user: "{{user}}"
   git:  repo=https://github.com/sstephenson/ruby-build.git 
-        dest=~{{user}}/.rbenv/plugins/ruby-build
-        version=d36e88c59effbab9b35403f58d34fcb1e0e4f45b
+        dest={{rbenv_ruby_build_dir}}
+        version={{rbenv_ruby_build_sha}}
+  when: '"{{rbenv_ruby_build_current_git_sha.value}}" != "{{rbenv_ruby_build_sha}}"'
 
 
-- name: Create target dir for rbenv alias plugin
-  file: path=~{{user}}/.rbenv/plugins/rbenv-alias
+### rbenv alias
+
+- name: Create target dir
+  file: path={{rbenv_ruby_aliases_dir}}
         owner={{user}}
         group={{user}}
         state=directory
         mode=0755
+
+- current_git_sha: git_dir={{rbenv_ruby_aliases_dir}}
+  register: rbenv_ruby_aliases_current_git_sha
 
 - name: Clone rbenv alias plugin
   sudo: True
   sudo_user: "{{user}}"
   git: repo=https://github.com/tpope/rbenv-aliases.git 
-       dest=~{{user}}/.rbenv/plugins/rbenv-alias
-       version=0505265e210feea1bc07980afe41229b657fb7f2
+       dest={{rbenv_ruby_aliases_dir}}
+       version={{rbenv_ruby_aliases_sha}}
   register: clone_rbenv_alias_plugin
+  when: '"{{rbenv_ruby_aliases_current_git_sha.value}}" != "{{rbenv_ruby_aliases_sha}}"'
 
 - name: Enable auto mode for rbenv alias 
   command: su {{user}} -l -s /bin/bash -c "source /etc/profile.d/rbenv-load.sh && rbenv-load && rbenv alias --auto"
   when: clone_rbenv_alias_plugin.changed
 
+
+### default gems 
+
 - name: Default gems config
   sudo: True
   sudo_user: "{{user}}"
   template: src=default-gems
-            dest=~{{user}}/.rbenv/default-gems 
+            dest={{rbenv_dir}}/default-gems 
 
 - name: Create target dir for rbenv default-gem plugin
-  file: path=~{{user}}/.rbenv/plugins/rbenv-default-gems
+  file: path={{rbenv_default_gems_dir}}
         owner={{user}}
         group={{user}}
         state=directory
         mode=0755
+
+- current_git_sha: git_dir={{rbenv_default_gems_dir}}
+  register: rbenv_default_gems_current_git_sha
 
 - name: Clone rbenv default-gems plugin 
   sudo: True
   sudo_user: "{{user}}"
   git:  repo=https://github.com/sstephenson/rbenv-default-gems.git
-        dest=~{{user}}/.rbenv/plugins/rbenv-default-gems
-        version=ead67889c91c53ad967f85f5a89d986fdb98f6fb
+        dest={{rbenv_default_gems_dir}}
+        version={{rbenv_default_gems_sha}}
+  when: '"{{rbenv_default_gems_current_git_sha.value}}" != "{{rbenv_default_gems_sha}}"'
 
+
+### rehash 
 
 - name: Create target dir for rbenv gem-rehash plugin
-  file: path=~{{user}}/.rbenv/plugins/rbenv-gem-rehash
+  file: path={{rbenv_gem_rehash_dir}}
         owner={{user}}
         group={{user}}
         state=directory
         mode=0755
 
-- name: Rebenv gem-rehash plugin
+- current_git_sha: git_dir={{rbenv_gem_rehash_dir}}
+  register: rbenv_gem_rehash_current_git_sha
+
+- name: Clone rebenv gem-rehash plugin
   sudo: True
   sudo_user: "{{user}}"
   git:  repo=https://github.com/sstephenson/rbenv-gem-rehash.git
-        dest=~{{user}}/.rbenv/plugins/rbenv-gem-rehash
-        version=4d7b92de4bdf549df59c3c8feb1890116d2ea985
+        dest={{rbenv_gem_rehash_dir}}
+        version={{rbenv_gem_rehash_sha}}
+  when: '"{{rbenv_gem_rehash_current_git_sha.value}}" != "{{rbenv_gem_rehash_sha}}"'
+
+
+
 
