@@ -30,8 +30,6 @@
 - current_git_sha: git_dir={{rbenv_dir}}
   register: rbenv_current_git_sha
 
-- debug: msg={{rbenv_current_git_sha.value}}
-
 - name: Clone rbenv if not up to date
   sudo: True
   sudo_user: "{{user}}"
