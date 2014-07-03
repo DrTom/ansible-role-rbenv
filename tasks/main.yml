@@ -33,7 +33,7 @@
 - name: Clone rbenv if not up to date
   sudo: True
   sudo_user: "{{user}}"
-  git:  repo=https://github.com/sstephenson/rbenv.git
+  git:  repo={{rbenv_repository}}
         dest={{rbenv_dir}}
         version={{rbenv_git_sha}}
   when: '"{{rbenv_current_git_sha.value}}" != "{{rbenv_git_sha}}"'
@@ -55,7 +55,7 @@
 - name: Clone ruby-build plugin
   sudo: True
   sudo_user: "{{user}}"
-  git:  repo=https://github.com/sstephenson/ruby-build.git 
+  git:  repo={{rbenv_ruby_build_repository}}
         dest={{rbenv_ruby_build_dir}}
         version={{rbenv_ruby_build_sha}}
   when: '"{{rbenv_ruby_build_current_git_sha.value}}" != "{{rbenv_ruby_build_sha}}"'
@@ -76,7 +76,7 @@
 - name: Clone rbenv alias plugin
   sudo: True
   sudo_user: "{{user}}"
-  git: repo=https://github.com/tpope/rbenv-aliases.git 
+  git: repo={{rbenv_ruby_aliases_repository}}
        dest={{rbenv_ruby_aliases_dir}}
        version={{rbenv_ruby_aliases_sha}}
   register: clone_rbenv_alias_plugin
@@ -108,7 +108,7 @@
 - name: Clone rbenv default-gems plugin 
   sudo: True
   sudo_user: "{{user}}"
-  git:  repo=https://github.com/sstephenson/rbenv-default-gems.git
+  git:  repo={{rbenv_default_gems_repository}}
         dest={{rbenv_default_gems_dir}}
         version={{rbenv_default_gems_sha}}
   when: '"{{rbenv_default_gems_current_git_sha.value}}" != "{{rbenv_default_gems_sha}}"'
@@ -129,11 +129,9 @@
 - name: Clone rebenv gem-rehash plugin
   sudo: True
   sudo_user: "{{user}}"
-  git:  repo=https://github.com/sstephenson/rbenv-gem-rehash.git
+  git:  repo={{rbenv_gem_rehash_repository}}
         dest={{rbenv_gem_rehash_dir}}
         version={{rbenv_gem_rehash_sha}}
   when: '"{{rbenv_gem_rehash_current_git_sha.value}}" != "{{rbenv_gem_rehash_sha}}"'
-
-
 
 
