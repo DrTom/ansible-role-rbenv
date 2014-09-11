@@ -5,7 +5,7 @@ rbenv_git_sha: '13a474c4e9c3305179b364723349fc49b3e935e3'
 rbenv_repository: 'https://github.com/sstephenson/rbenv.git'
 
 rbenv_ruby_build_dir: "{{rbenv_dir}}/plugins/ruby-build"
-rbenv_ruby_build_sha: 'c819790848b4e4814262cfc7101a9770a33004d8'
+rbenv_ruby_build_sha: 'v20140908'
 rbenv_ruby_build_repository: 'https://github.com/sstephenson/ruby-build.git'
 
 rbenv_ruby_aliases_dir: "{{rbenv_dir}}/plugins/ruby-aliases"
