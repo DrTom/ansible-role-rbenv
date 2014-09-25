@@ -10,13 +10,13 @@
     - libxslt1-dev
     - tklib 
     - zlib1g-dev 
-
+    - openjdk-7-jre-headless 
+    - openjdk-7-jdk
 
 - name: Install rbenv-load profile
   template: src=rbenv-load.sh
             dest=/etc/profile.d/rbenv-load.sh
             mode=0644
-
 
 ### rbenv 
  
