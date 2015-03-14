@@ -9,17 +9,10 @@ This role does not provide mechanisms to install rubies. The [Ansible
 Rbenv Ruby Role][] manages rubies on top of this role.
 
 
-Example Usage
--------------
+Usage
+-----
 
-Assuming that `test-server` will resolve to a machine (e.g. by
-defining it in `~/.ssh/config`) where the current user
-has ssh access though a ssh key, invoke 
-
-    ansible-playbook -i examples/hosts examples/site.yml
-
-which will install rbenv for the root user.
-
+See <https://github.com/cider-ci/cider-ci_ansible-setup> e.g. 
 
 Loading Rbenv 
 -------------
@@ -43,14 +36,13 @@ a parameter to install further dependencies for a particular ruby variant.
 Supported Ansible Versions
 --------------------------
 
-This role was tested with ansible => 1.5.
+This role is used frequently with Ansible => 1.8
 
 Supported Operating Systems
 ---------------------------
 
 * Debian 7 Wheezy
 * Ubuntu 14.04 LTS Trusty
-* Ubuntu 12.04 LTS Precise
 
 
   [Ansible Rbenv Ruby Role]: https://github.com/DrTom/ansible-role-rbenv-ruby

@@ -1,15 +1,15 @@
 user: ubuntu
 
 rbenv_dir: ~{{user}}/.rbenv
-rbenv_git_sha: '13a474c4e9c3305179b364723349fc49b3e935e3'
+rbenv_git_sha: '7ad01b2b485fb635d7a96daef33f6a733e5b1c80'
 rbenv_repository: 'https://github.com/sstephenson/rbenv.git'
 
 rbenv_ruby_build_dir: "{{rbenv_dir}}/plugins/ruby-build"
-rbenv_ruby_build_sha: 'b79e7136558575a4212b696f85ed1f4373a6c7e1'
+rbenv_ruby_build_sha: '7f3cc017ac6715253dd7597d3decde8cb26b89b7'
 rbenv_ruby_build_repository: 'https://github.com/sstephenson/ruby-build.git'
 
 rbenv_ruby_aliases_dir: "{{rbenv_dir}}/plugins/ruby-aliases"
-rbenv_ruby_aliases_sha: '0505265e210feea1bc07980afe41229b657fb7f2'
+rbenv_ruby_aliases_sha: '2e752b0df250104b55cc9cf54414de77626cf8bd'
 rbenv_ruby_aliases_repository: 'https://github.com/tpope/rbenv-aliases.git'
 
 rbenv_default_gems_dir: "{{rbenv_dir}}/plugins/default-gems"
