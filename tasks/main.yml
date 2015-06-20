@@ -1,16 +1,16 @@
 - name: Install dependencies
   apt: pkg={{item}} state=present update_cache=yes cache_valid_time=3600
-  with_items: 
+  with_items:
     - git-all
-    - build-essential 
+    - build-essential
     - libreadline-gplv2-dev
     - libssl-dev
-    - libxml2 
-    - libxml2-dev 
+    - libxml2
+    - libxml2-dev
     - libxslt1-dev
-    - tklib 
-    - zlib1g-dev 
-    - openjdk-7-jre-headless 
+    - tklib
+    - zlib1g-dev
+    - openjdk-7-jre-headless
     - openjdk-7-jdk
 
 - name: Install rbenv-load profile
@@ -18,8 +18,8 @@
             dest=/etc/profile.d/rbenv-load.sh
             mode=0644
 
-### rbenv 
- 
+### rbenv
+
 - name: Create rbenv target dir
   file: path={{rbenv_dir}}
         owner={{user}}
@@ -82,18 +82,18 @@
   register: clone_rbenv_alias_plugin
   when: '"{{rbenv_ruby_aliases_current_git_sha.value}}" != "{{rbenv_ruby_aliases_sha}}"'
 
-- name: Enable auto mode for rbenv alias 
+- name: Enable auto mode for rbenv alias
   command: su {{user}} -l -s /bin/bash -c "source /etc/profile.d/rbenv-load.sh && rbenv-load && rbenv alias --auto"
   when: clone_rbenv_alias_plugin.changed
 
 
-### default gems 
+### default gems
 
 - name: Default gems config
   sudo: True
   sudo_user: "{{user}}"
   template: src=default-gems
-            dest={{rbenv_dir}}/default-gems 
+            dest={{rbenv_dir}}/default-gems
 
 - name: Create target dir for rbenv default-gem plugin
   file: path={{rbenv_default_gems_dir}}
@@ -105,7 +105,7 @@
 - current_git_sha: git_dir={{rbenv_default_gems_dir}}
   register: rbenv_default_gems_current_git_sha
 
-- name: Clone rbenv default-gems plugin 
+- name: Clone rbenv default-gems plugin
   sudo: True
   sudo_user: "{{user}}"
   git:  repo={{rbenv_default_gems_repository}}
@@ -114,7 +114,7 @@
   when: '"{{rbenv_default_gems_current_git_sha.value}}" != "{{rbenv_default_gems_sha}}"'
 
 
-### rehash 
+### rehash
 
 - name: Create target dir for rbenv gem-rehash plugin
   file: path={{rbenv_gem_rehash_dir}}

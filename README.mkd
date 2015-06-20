@@ -12,9 +12,9 @@ Rbenv Ruby Role][] manages rubies on top of this role.
 Usage
 -----
 
-See <https://github.com/cider-ci/cider-ci_ansible-setup> e.g. 
+See <https://github.com/cider-ci/cider-ci_ansible-setup> e.g.
 
-Loading Rbenv 
+Loading Rbenv
 -------------
 
 A user needs to invoke `rbenv-load` to use the `rbenv` command and installed
@@ -22,7 +22,7 @@ rubies. This role purposely **does not load rbenv by default**. It is of course
 possible to add `rbenv-load` to `.bashrc` to have this happen automatically.
 
 Use `source /etc/profile.d/rbenv-load.sh` e.g. to have `load-rbenv`
-available from non login shells (init scripts for example). 
+available from non login shells (init scripts for example).
 
 
 Dependencies

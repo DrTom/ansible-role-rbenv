@@ -12,10 +12,10 @@ else
   SHA=$(cd ${git_dir}; git rev-parse HEAD)
 fi
 
-cat <<HEREDOC 
-{ 
+cat <<HEREDOC
+{
   "changed": false,
-  "value": "${SHA}" 
+  "value": "${SHA}"
 }
 HEREDOC
 
