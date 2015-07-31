@@ -39,7 +39,6 @@
   when: '"{{rbenv_current_git_sha.value}}" != "{{rbenv_git_sha}}"'
 
 
-
 ### ruby-build plugin
 
 - name: Create target dir
@@ -135,3 +134,8 @@
   when: '"{{rbenv_gem_rehash_current_git_sha.value}}" != "{{rbenv_gem_rehash_sha}}"'
 
 
+- name: Change owner post setup
+  file: path={{rbenv_dir}}
+        owner={{rbenv_change_owner_post_setup}}
+        group={{rbenv_change_owner_post_setup}}
+        state=directory

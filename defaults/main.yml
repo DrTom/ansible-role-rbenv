@@ -19,3 +19,5 @@ rbenv_default_gems_repository: 'https://github.com/sstephenson/rbenv-default-gem
 rbenv_gem_rehash_dir: "{{rbenv_dir}}/plugins/rbenv-gem-rehash"
 rbenv_gem_rehash_sha: '4d7b92de4bdf549df59c3c8feb1890116d2ea985'
 rbenv_gem_rehash_repository: 'https://github.com/sstephenson/rbenv-gem-rehash.git'
+
+rbenv_change_owner_post_setup: "{{user}}"
