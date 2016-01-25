@@ -1,11 +1,11 @@
 user: ubuntu
 
 rbenv_dir: ~{{user}}/.rbenv
-rbenv_git_sha: '0f44c57d0868885fd20e11348f73b575035696ee'
+rbenv_git_sha: '3997a394d975136f468be196941492d3d0ef5143'
 rbenv_repository: 'https://github.com/sstephenson/rbenv.git'
 
 rbenv_ruby_build_dir: "{{rbenv_dir}}/plugins/ruby-build"
-rbenv_ruby_build_sha: 'd76bd0cba7026f3ffaa6cf39f0dd95b455990f46'
+rbenv_ruby_build_sha: '288261985c210d355e6cd2d0ab4a89861beafa19'
 rbenv_ruby_build_repository: 'https://github.com/sstephenson/ruby-build.git'
 
 rbenv_ruby_aliases_dir: "{{rbenv_dir}}/plugins/ruby-aliases"
@@ -13,7 +13,7 @@ rbenv_ruby_aliases_sha: '2e752b0df250104b55cc9cf54414de77626cf8bd'
 rbenv_ruby_aliases_repository: 'https://github.com/tpope/rbenv-aliases.git'
 
 rbenv_default_gems_dir: "{{rbenv_dir}}/plugins/default-gems"
-rbenv_default_gems_sha: 'ead67889c91c53ad967f85f5a89d986fdb98f6fb'
+rbenv_default_gems_sha: '4f68eae50c8afc3a476d0a904719262f61a4fb44'
 rbenv_default_gems_repository: 'https://github.com/sstephenson/rbenv-default-gems.git'
 
 rbenv_gem_rehash_dir: "{{rbenv_dir}}/plugins/rbenv-gem-rehash"
