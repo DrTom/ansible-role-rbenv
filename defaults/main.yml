@@ -1,11 +1,11 @@
 user: ubuntu
 
 rbenv_dir: ~{{user}}/.rbenv
-rbenv_git_sha: '3997a394d975136f468be196941492d3d0ef5143'
+rbenv_git_sha: '29b4da77370af0a3413dce00a72c7631302a2b25'
 rbenv_repository: 'https://github.com/sstephenson/rbenv.git'
 
 rbenv_ruby_build_dir: "{{rbenv_dir}}/plugins/ruby-build"
-rbenv_ruby_build_sha: '288261985c210d355e6cd2d0ab4a89861beafa19'
+rbenv_ruby_build_sha: '522f3ba0e7ed15900271b2b55986f2c499819a2d'
 rbenv_ruby_build_repository: 'https://github.com/sstephenson/ruby-build.git'
 
 rbenv_ruby_aliases_dir: "{{rbenv_dir}}/plugins/ruby-aliases"
